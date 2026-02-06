@@ -4,7 +4,7 @@ This is a reorganized version of the code in [GMLoader](https://github.com/Senja
 Though it is designed for use with UFO 50 in mind, it can be used for any Game Maker game.
 
 ## Usage
-Copy into the folder both a vanilla data.win called `vanilla.win` and a modded data.win called `data.win`. For best results, ensure that the `vanilla.win` is from the version of the game that the game was modded from.
+Copy into the folder both a vanilla data.win called `vanilla.win` and a modded data.win called `data.win`. For best results, ensure that the `vanilla.win` is from the version of the game that the game was modded from. When the program is done extracting both and comparing all files, the modded files will be found in the `Converted Output` folder.
 ### Exporting Textures
 To export UFO 50 v1.7+ textures, make sure that the `Textures` folder from the UFO 50 game install files is also copied in.
 ### GMLoader.ini
