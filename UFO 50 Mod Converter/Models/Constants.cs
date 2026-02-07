@@ -27,9 +27,9 @@
         public static readonly string ExportedAudioConfigOutputFolder = Path.Combine("config", "audio_properties");
 
         // Compared YAML names
-        public static readonly string MyModdedTexturesConfig = "MyModdedTexturesConfig";
-        public static readonly string MyModdedBackgroundsConfig = "MyModdedBackgroundsConfig";
-        public static readonly string MyModdedAudioConfig = "MyModdedAudioConfig";
+        public static readonly string MyModdedTexturesConfig = "MyModdedTexturesConfig.yaml";
+        public static readonly string MyModdedBackgroundsConfig = "MyModdedBackgroundsConfig.yaml";
+        public static readonly string MyModdedAudioConfig = "MyModdedAudioConfig.yaml";
         public static readonly string MyModdedPrefix = "MyModded";
     }
 }
