@@ -18,6 +18,9 @@ try {
 }
 catch (Exception ex) {
     Log.Fatal(ex, "An unhandled exception occurred");
+    Log.Information("Press any key to exit.");
+    Console.ReadKey();
+    Log.CloseAndFlush();
 }
 finally {
     Log.CloseAndFlush();
