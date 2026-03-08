@@ -42,7 +42,9 @@ namespace UFO_50_Mod_Converter.ExportScripts
                 CollisionShape = obj.CollisionShape.ToString(),
                 IsVisible = obj.Visible,
                 IsSolid = obj.Solid,
-                IsPersistent = obj.Persistent
+                IsPersistent = obj.Persistent,
+                UsesPhysics = obj.UsesPhysics,
+                IsSensor = obj.IsSensor
             };
 
             string json = JsonConvert.SerializeObject(objData, Formatting.Indented);
