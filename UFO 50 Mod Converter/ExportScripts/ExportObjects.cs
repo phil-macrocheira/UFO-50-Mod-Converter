@@ -1,6 +1,7 @@
-using Serilog;
-using UndertaleModLib.Models;
 using Newtonsoft.Json;
+using Serilog;
+using UFO_50_Mod_Converter.Models;
+using UndertaleModLib.Models;
 
 namespace UFO_50_Mod_Converter.ExportScripts
 {
@@ -49,6 +50,15 @@ namespace UFO_50_Mod_Converter.ExportScripts
 
             string json = JsonConvert.SerializeObject(objData, Formatting.Indented);
             string outputFileName = Path.Combine(_outputPath, $"{objName}.json");
+
+            if (!string.IsNullOrEmpty(Settings.Config.ExportIfStartsWith)) {
+                if (!objName.StartsWith(Settings.Config.ExportIfStartsWith))
+                    return;
+            }
+            if (!string.IsNullOrEmpty(Settings.Config.ExportIfContains)) {
+                if (!objName.Contains(Settings.Config.ExportIfContains))
+                    return;
+            }
 
             try {
                 File.WriteAllText(outputFileName, json);

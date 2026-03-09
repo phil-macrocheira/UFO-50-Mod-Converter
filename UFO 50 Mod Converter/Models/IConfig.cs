@@ -33,8 +33,12 @@ namespace UFO_50_Mod_Converter.Models
         bool AutoDeleteVanillaExport { get; }
         [Option(DefaultValue = false)]
         bool AutoDeleteModdedExport { get; }
+        [Option(DefaultValue = true)]
+        bool AutoDeleteConvertedOutputAtStart { get; }
 
         [Option(DefaultValue = "sTest,s39_RoomTest")]
         string TexturesToIgnore { get; }
+        string ExportIfStartsWith { get; }
+        string ExportIfContains { get; }
     }
 }

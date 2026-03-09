@@ -1,4 +1,5 @@
 using Serilog;
+using UFO_50_Mod_Converter.Models;
 using Underanalyzer.Decompiler;
 using UndertaleModLib.Decompiler;
 using UndertaleModLib.Models;
@@ -42,6 +43,15 @@ namespace UFO_50_Mod_Converter.ExportScripts
 
             string fileName = $"{code.Name.Content}.gml";
             string filePath = Path.Combine(codeFolder, fileName);
+
+            if (!string.IsNullOrEmpty(Settings.Config.ExportIfStartsWith)) {
+                if (!fileName.StartsWith(Settings.Config.ExportIfStartsWith))
+                    return;
+            }
+            if (!string.IsNullOrEmpty(Settings.Config.ExportIfContains)) {
+                if (!fileName.Contains(Settings.Config.ExportIfContains))
+                    return;
+            }
 
             Log.Information($"Exporting: {code.Name.Content}");
 

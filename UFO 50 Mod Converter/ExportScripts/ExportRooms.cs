@@ -1,5 +1,6 @@
 using Serilog;
 using System.Text.Json;
+using UFO_50_Mod_Converter.Models;
 using UndertaleModLib.Models;
 
 namespace UFO_50_Mod_Converter.ExportScripts
@@ -19,6 +20,15 @@ namespace UFO_50_Mod_Converter.ExportScripts
 
             foreach (var room in data.Rooms) {
                 if (room == null) continue;
+
+                if (!string.IsNullOrEmpty(Settings.Config.ExportIfStartsWith)) {
+                    if (!room.Name.Content.StartsWith(Settings.Config.ExportIfStartsWith))
+                        continue;
+                }
+                if (!string.IsNullOrEmpty(Settings.Config.ExportIfContains)) {
+                    if (!room.Name.Content.Contains(Settings.Config.ExportIfContains))
+                        continue;
+                }
 
                 try {
                     Log.Information($"Exporting {room.Name.Content}");

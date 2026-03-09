@@ -10,11 +10,6 @@ namespace UFO_50_Mod_Converter
     {
         public static void Start()
         {
-            if (!Directory.Exists(Constants.ExportVanillaPath) || !Directory.Exists(Constants.ExportModdedPath)) {
-                Log.Error("Export directories are missing. Ensure export settings are enabled in GMLoader.ini");
-                return;
-            }
-
             CompareAndCopyFiles();
             CopyAndMergeConfigFiles();
             CleanUpFiles();
@@ -31,6 +26,9 @@ namespace UFO_50_Mod_Converter
                 Log.Error($"Modded export directory not found: {Constants.ExportModdedPath}");
                 return;
             }
+
+            if (Directory.Exists(Constants.ConvertedOutputPath) && Settings.Config.AutoDeleteConvertedOutputAtStart)
+                Directory.Delete(Constants.ConvertedOutputPath, true);
 
             var vanillaFiles = Directory.GetFiles(Constants.ExportVanillaPath, "*.*", SearchOption.AllDirectories);
             var moddedFiles = Directory.GetFiles(Constants.ExportModdedPath, "*.*", SearchOption.AllDirectories);
@@ -60,12 +58,8 @@ namespace UFO_50_Mod_Converter
                 string relativePath = Path.GetRelativePath(Constants.ExportModdedPath, moddedFile);
                 string outputFilePath = Path.Combine(Constants.ConvertedOutputPath, relativePath);
 
-                if (fileName.Equals("data.json", StringComparison.OrdinalIgnoreCase)) {
-                    Log.Information($"Copying {moddedFile}");
-                    EnsureDirectoryExists(Path.GetDirectoryName(outputFilePath));
-                    File.Copy(moddedFile, outputFilePath, true);
-                    return;
-                }
+                Log.Information(relativePath);
+                Log.Information(outputFilePath);
 
                 if (vanillaFileNames.TryGetValue(fileName, out string vanillaFile)) {
                     ulong vanillaHash = ComputeFileHash(vanillaFile);
@@ -73,12 +67,14 @@ namespace UFO_50_Mod_Converter
 
                     if (vanillaHash != modHash) {
                         Log.Information($"File modified: {Path.GetFileName(moddedFile)}");
+                        outputFilePath = outputFilePath.Replace("\\objects\\", "\\config\\existing_object\\"); // WINDOWS ONLY
                         EnsureDirectoryExists(Path.GetDirectoryName(outputFilePath));
                         File.Copy(moddedFile, outputFilePath, true);
                     }
                 }
                 else {
                     Log.Information($"New file: {Path.GetFileName(moddedFile)}");
+                    outputFilePath = outputFilePath.Replace("\\objects\\", "\\config\\new_object\\"); // WINDOWS ONLY
                     EnsureDirectoryExists(Path.GetDirectoryName(outputFilePath));
                     File.Copy(moddedFile, outputFilePath, true);
                 }

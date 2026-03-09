@@ -65,9 +65,17 @@ namespace UFO_50_Mod_Converter.ExportScripts
             }
 
             foreach (string ignore in _texturesToIgnore) {
-                if (spriteName.Contains(ignore)) {
+                if (spriteName.Contains(ignore))
                     return;
-                }
+            }
+
+            if (!string.IsNullOrEmpty(Settings.Config.ExportIfStartsWith)) {
+                if (!spriteName.StartsWith(Settings.Config.ExportIfStartsWith))
+                    return;
+            }
+            if (!string.IsNullOrEmpty(Settings.Config.ExportIfContains)) {
+                if (!spriteName.Contains(Settings.Config.ExportIfContains))
+                    return;
             }
 
             Log.Information($"Exporting {spriteName}");

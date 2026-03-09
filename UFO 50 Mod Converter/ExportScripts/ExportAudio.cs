@@ -32,6 +32,15 @@ namespace UFO_50_Mod_Converter.ExportScripts
 
             foreach (var sound in _data.Sounds) {
                 if (sound != null) {
+                    if (!string.IsNullOrEmpty(Settings.Config.ExportIfStartsWith)) {
+                        if (!sound.Name.Content.StartsWith(Settings.Config.ExportIfStartsWith))
+                            continue;
+                    }
+                    if (!string.IsNullOrEmpty(Settings.Config.ExportIfContains)) {
+                        if (!sound.Name.Content.Contains(Settings.Config.ExportIfContains))
+                            continue;
+                    }
+
                     try {
                         ExportSound(sound);
                     }
