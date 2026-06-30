@@ -67,14 +67,16 @@ namespace UFO_50_Mod_Converter
 
                     if (vanillaHash != modHash) {
                         Log.Information($"File modified: {Path.GetFileName(moddedFile)}");
-                        outputFilePath = outputFilePath.Replace("\\objects\\", "\\config\\existing_object\\"); // WINDOWS ONLY
+                        string targetDir = Path.Combine("config", "existing_object");
+                        outputFilePath = outputFilePath.Replace("objects", targetDir);
                         EnsureDirectoryExists(Path.GetDirectoryName(outputFilePath));
                         File.Copy(moddedFile, outputFilePath, true);
                     }
                 }
                 else {
                     Log.Information($"New file: {Path.GetFileName(moddedFile)}");
-                    outputFilePath = outputFilePath.Replace("\\objects\\", "\\config\\new_object\\"); // WINDOWS ONLY
+                    string targetDir = Path.Combine("config", "new_object");
+                    outputFilePath = outputFilePath.Replace("objects", targetDir);
                     EnsureDirectoryExists(Path.GetDirectoryName(outputFilePath));
                     File.Copy(moddedFile, outputFilePath, true);
                 }
