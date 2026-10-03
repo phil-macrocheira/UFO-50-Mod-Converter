@@ -15,9 +15,9 @@ You can modify the `GMLoader.ini` file to adjust some settings before use:
 * **ExportObjects:** Whether or not to export .JSON object data files
 * **ExportRooms:** Whether or not to export .JSON room data files
 * **ExportAudio:** Whether or not to export audio files and .JSON audio property files
-* **ReuseVanillaExport:** Whether or not to reuse the exported vanilla files to skip exporting it next time if it already exists. False by default.
+* **ReuseVanillaExport:** Whether or not to reuse the exported vanilla files to skip exporting it next time if it already exists. True by default.
 * **AutoDeleteVanillaExport:** Whether or not to automatically delete the vanilla export at the end. False by default.
-* **AutoDeleteModdedExport:** Whether or not to automatically delete the modded export at the end. False by default.
+* **AutoDeleteModdedExport:** Whether or not to automatically delete the modded export at the end. True by default.
 * **AutoDeleteConvertedOutputAtStart:** Whether or not to automatically delete the converted output before the comparison. True by default.
 * **TexturesToIgnore:** A comma separated list of filenames of textures to skip and ignore when exporting textures. Already includes 2 filenames of unused test textures in UFO 50 that cause warnings.
 * **ExportIfStartsWith:** Export only files with filenames starting with this string
