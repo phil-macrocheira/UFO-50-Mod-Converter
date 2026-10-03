@@ -27,11 +27,11 @@ namespace UFO_50_Mod_Converter.Models
         [Option(DefaultValue = true)]
         bool ExportAudio { get; }
 
-        [Option(DefaultValue = false)]
+        [Option(DefaultValue = true)]
         bool ReuseVanillaExport { get; }
         [Option(DefaultValue = false)]
         bool AutoDeleteVanillaExport { get; }
-        [Option(DefaultValue = false)]
+        [Option(DefaultValue = true)]
         bool AutoDeleteModdedExport { get; }
         [Option(DefaultValue = true)]
         bool AutoDeleteConvertedOutputAtStart { get; }
